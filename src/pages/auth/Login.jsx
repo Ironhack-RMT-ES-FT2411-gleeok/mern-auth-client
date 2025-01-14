@@ -1,7 +1,7 @@
-import axios from "axios";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../context/auth.context";
 import { useNavigate } from "react-router-dom";
+import service from "../../services/config.services";
 
 function Login() {
 
@@ -26,7 +26,10 @@ function Login() {
     // ... contactar al backend para validar credenciales de usuario aqui
     try {
       
-      const response = await axios.post(`${import.meta.env.VITE_SERVER_URL}/api/auth/login`, userCredentials)
+      // const response = await axios.post(`${import.meta.env.VITE_SERVER_URL}/api/auth/login`, userCredentials)
+      const response = await service.post("/auth/login", userCredentials)
+
+
       console.log("usuario validado", response.data)
 
       //1 almacenamos el token en local storage

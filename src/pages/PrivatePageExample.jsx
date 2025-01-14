@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import service from '../services/config.services'
 
 function PrivatePageExample() {
 
@@ -12,6 +13,15 @@ function PrivatePageExample() {
     try {
       
       // call a private route here...
+
+      // const authToken = localStorage.getItem("authToken")
+      // const response = await axios.get(`${import.meta.env.VITE_SERVER_URL}/api/private-route-example`, {
+      //   headers: { authorization: `Bearer ${authToken}` }
+      // })
+
+      const response = await service.get("/private-route-example")
+
+      console.log(response.data)
 
     } catch (error) {
       console.log(error)
